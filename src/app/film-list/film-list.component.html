@@ -1,0 +1,14 @@
+<div class="ui middle aligned selection divided list">
+    <fl-film-list-item class="item"
+    *ngFor="let f of films"
+    [film]="f"
+    [routerLink]="f.gtin"></fl-film-list-item>
+
+  <div *ngIf="!films" class="ui active dimmer">
+    <div class="ui large text loader">Daten werden geladen...</div>
+  </div>
+
+  <p *ngIf="films && !films.length">
+    Es wurden noch keine Bücher in die Datenbank eingetragen.
+  </p>
+</div>

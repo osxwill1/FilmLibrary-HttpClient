@@ -1,0 +1,35 @@
+<div *ngIf="film; else loading">
+  <h1>{{ film.title }}</h1>
+  <h3 *ngIf="film.subtitle">{{ film.subtitle }}</h3>
+  <div class="ui divider"></div>
+  <div class="ui grid">
+    <div class="four wide column">
+      <h4>Regisseure</h4>
+      <ng-container *ngFor="let author of film.authors">
+        {{ author }}<br>
+      </ng-container>
+    </div>
+    <div class="four wide column">
+      <h4>GTIN</h4>
+      {{ film.gtin }}
+    </div>
+    <div class="four wide column">
+      <h4>Erschienen</h4>
+      {{ film.published }}
+    </div>
+    <div class="four wide column">
+      <h4>Rating</h4>
+      <i class="yellow star icon"
+        *ngFor="let r of getRating(film.rating)"></i>
+    </div>
+  </div>
+  <h4>Beschreibung</h4>
+  <p>{{ film.description }}</p>
+  <div class="ui small images">
+    <img *ngFor="let thumbnail of film.thumbnails"
+      [src]="thumbnail">
+  </div>
+
+<ng-template #loading>
+  <div class="ui active centered inline loader"></div>
+</ng-template>

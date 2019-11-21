@@ -1,0 +1,14 @@
+<img class="ui tiny image"
+      *ngIf="film.thumbnails && film.thumbnails[0]"
+      [src]="film.thumbnails[0]">
+    <div class="content">
+      <div class="header">{{ film.title }}</div>
+      <div *ngIf="film.subtitle" class="description">{{ film.subtitle }}</div>
+      <div class="metadata">
+        <span *ngFor="let author of film.authors; last as l">
+          {{ author }}<span *ngIf="!l">, </span>
+        </span>
+        <br>
+        GTIN {{ film.gtin }}
+      </div>
+    </div>
