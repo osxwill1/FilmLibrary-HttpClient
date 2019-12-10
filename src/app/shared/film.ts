@@ -2,7 +2,7 @@ export interface Film {
   gtin: string;
   title: string;
   authors: string[];
-  published: Date;
+  published: string;
   subtitle?: string;
   rating?: number;
   thumbnails?: string[];

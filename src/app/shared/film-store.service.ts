@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Film } from './film';
@@ -9,8 +9,7 @@ import firestoreParser from 'firestore-parser';
   providedIn: 'root'
 })
 export class FilmStoreService {
-  private url =
-    'https://firestore.googleapis.com/v1/projects/filmlibrary-167373/databases/(default)/documents';
+  private url = 'https://firestore.googleapis.com/v1/projects/filmlibrary-167373/databases/(default)/documents';
 
   constructor(private http: HttpClient) {}
 
@@ -19,7 +18,8 @@ export class FilmStoreService {
   }
 
   getAll(): Observable<Film[]> {
-    return this.http.get<object>(`${this.url}/films`).pipe(
+    const params = new HttpParams ({ fromObject: { pageSize: '100' } });
+    return this.http.get<object>(`${this.url}/films`, { params }).pipe(
       map((resultJson): any[] => resultJson['documents']),
       map(resultArray =>
         resultArray.map(arrayEntry => this.parseFirestoreEntry(arrayEntry))

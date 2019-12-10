@@ -8,6 +8,6 @@ type ViewState = 'list' | 'details';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'FilmLibrary';
+  title = 'FilmLibrary-HttpClient';
 
 }
